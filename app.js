@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(studentRouter);
 
-app.listen(6000, () => {
-    console.log("server is running at port 6000")
+app.listen(6000, async() => {
+    console.log("server is running at port 6000");
+    
 })

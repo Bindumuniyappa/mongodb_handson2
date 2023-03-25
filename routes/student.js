@@ -5,6 +5,8 @@ const router=express.Router();
 
 router.post('/student',studentController.studentEnrollment)
 router.get('/student', studentController.studentFind);
+router.get('/student', studentController.studentFindExp);
+router.get('/student', studentController.studentFindExpAndGrad);
 router.put('/student', studentController.studentUpdate);
 router.delete('/student', studentController.studentDelete);
 

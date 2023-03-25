@@ -1,13 +1,12 @@
 const {MongoClient} = require("mongodb")
 
-const url="mongodb+srv://muniyappabindu7:Bindu123@cluster0.otsvnjq.mongodb.net/?retryWrites=true&w=majority";
+const url="mongodb://127.0.0.1:27017";
 const client=new MongoClient(url);
 
 const insertToDB=async (data) =>{
     await client.connect();
     const database=client.db("student")
     const collection=database.collection("information")
-    await client.connect();
     const dbResponse=await collection.insertOne(data);
     await client.close();
     return dbResponse;
@@ -15,6 +14,15 @@ const insertToDB=async (data) =>{
 
 
 const findInDB=async (query)=>{
+    const database=client.db("student");
+    const collection=database.collection("information");
+    await client.connect();
+    const dbResponse=await collection.find(query).toArray();
+    await client.close();
+    return dbResponse;
+}
+
+const findInDBExp=async (query)=>{
     const database=client.db("student");
     const collection=database.collection("information");
     await client.connect();
@@ -42,5 +50,5 @@ const deleteInDB = async (filteredCond) => {
 }
 
 module.exports={
-    insertToDB,findInDB,updateInDB,deleteInDB,
+    insertToDB,findInDB,findInDBExp,updateInDB,deleteInDB,
 }
